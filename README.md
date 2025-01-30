@@ -102,7 +102,7 @@ kubectl apply -f test-pod.yaml
 
 2) Настраиваем конфигурацию для нового пользователя:
 
-   ```bash
+```bash
 kubectl config set-credentials user1 \
     --client-certificate=user1.crt \
     --client-key=user1.key
