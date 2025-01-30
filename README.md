@@ -164,6 +164,23 @@ kubectl apply -f role-binding.yaml
 - Просматривать логи подов (kubectl logs test-pod - работает)
 - Просматривать конфигурацию подов (kubectl describe pod test-pod - работает)
 
+
+## 4. Проверка работоспособности
+
+1) Переключаемся на контекст нового пользователя:
+
+```bash
+  kubectl config use-context user1-context
+```
+
+2) Проверяем права:
+
+```bash
+kubectl get pods
+kubectl logs test-pod
+kubectl describe pod test-pod
+```
+
 ![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-4.png)
 
 
