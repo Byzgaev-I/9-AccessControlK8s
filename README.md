@@ -82,7 +82,38 @@ extendedKeyUsage=clientAuth
 
 ## 2. Настройка kubectl
 
-1) Создаем тестовый Pod для проверки прав:
+1) Создал тестовый Pod для проверки прав с содержимым test-pod.yaml:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+```
+и применил манифест:
+
+```bash
+kubectl apply -f test-pod.yaml
+```
+
+2) Настраиваем конфигурацию для нового пользователя:
+
+   ```bash
+kubectl config set-credentials user1 \
+    --client-certificate=user1.crt \
+    --client-key=user1.key
+
+kubectl config set-context user1-context \
+    --cluster=microk8s-cluster \
+    --namespace=default \
+    --user=user1
+```
+
+![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-3%20настройка%20kubctl.png)
 
 
 
