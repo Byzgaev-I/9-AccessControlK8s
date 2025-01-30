@@ -116,11 +116,55 @@ kubectl config set-context user1-context \
 ![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-3%20настройка%20kubctl.png)
 
 
+## 3. Создание RBAC правил
 
+1) Создаем роль с необходимыми ролями: 
 
+Содержимое role.yaml:
 
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "watch", "list"]
+```
 
+2) Создаем привязку роли с пользователем через RoleBinding (role-binding.yaml):
 
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+- kind: User
+  name: user1
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+3) Применяем RBAC конфигурацию:
+
+```bash
+kubectl apply -f role.yaml
+kubectl apply -f role-binding.yaml
+```
+
+Мы проверили, что пользователь может:
+
+- Просматривать логи подов (kubectl logs test-pod - работает)
+- Просматривать конфигурацию подов (kubectl describe pod test-pod - работает)
+
+![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-4.png)
 
 
 
