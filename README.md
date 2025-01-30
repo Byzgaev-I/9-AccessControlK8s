@@ -30,3 +30,80 @@ microk8s status
 ### 1. Создание SSL-сертификата
 
 1) Создаем закрытый ключ:
+
+```bash
+openssl genrsa -out user1.key 2048
+```
+
+2) Создаем запрос на подпись сертификата (CSR):
+
+```bash
+openssl req -new -key user1.key -out user1.csr -subj "/CN=user1/O=group1"
+```
+
+3) Создаем конфигурационный файл для сертификата:
+   
+```bash
+nano csr.conf
+```
+Содержимое csr.conf:
+
+```text
+[ req ]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+
+[ dn ]
+CN = user1
+O = group1
+
+[ v3_ext ]
+authorityKeyIdentifier=keyid,issuer:always
+basicConstraints=CA:FALSE
+keyUsage=keyEncipherment,dataEncipherment
+extendedKeyUsage=clientAuth
+```
+
+4) Подписываем сертификат:
+
+```bash
+   sudo openssl x509 -req -in user1.csr \
+    -CA /var/snap/microk8s/current/certs/ca.crt \
+    -CAkey /var/snap/microk8s/current/certs/ca.key \
+    -CAcreateserial \
+    -out user1.crt -days 365 \
+    -extfile csr.conf -extensions v3_ext
+```
+
+## 2. Настройка kubectl
+
+1) Создаем тестовый Pod для проверки прав:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
