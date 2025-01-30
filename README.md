@@ -18,3 +18,11 @@
 4) Предусмотрите права пользователя. Пользователь может просматривать логи подов и их конфигурацию (kubectl logs pod <pod_id>, kubectl describe pod <pod_id>).
 5) Предоставьте манифесты и скриншоты и/или вывод необходимых команд.
 
+### Решение
+
+1. Проверка работоспособности MicroK8S:
+```bash
+microk8s status
+```
+![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-1%20MicroK8S%20работает.png)
+
