@@ -26,3 +26,7 @@ microk8s status
 ```
 ![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-1%20MicroK8S%20работает.png)
 
+## Задание 1: Создание конфигурации пользователя
+### 1. Создание SSL-сертификата
+
+1) Создаем закрытый ключ:
