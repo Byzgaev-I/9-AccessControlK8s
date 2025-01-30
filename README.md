@@ -77,6 +77,9 @@ extendedKeyUsage=clientAuth
     -extfile csr.conf -extensions v3_ext
 ```
 
+![image](https://github.com/Byzgaev-I/9-AccessControlK8s/blob/main/1-2%20подписываем%20сертификат.png)
+
+
 ## 2. Настройка kubectl
 
 1) Создаем тестовый Pod для проверки прав:
